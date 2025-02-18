@@ -1,169 +1,479 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import AnimatedSection from './components/AnimatedSection';
 
 export default function Home() {
-  return (
-    <div className="min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="max-w-5xl mx-auto">
-        {/* Social Proof Section - Fade in from top */}
-        <div className="flex items-center gap-2 mb-4 animate-fade-in-down">
-          <div className="flex -space-x-2">
-            {/* Avatars with staggered animation */}
-            <div className="w-8 h-8 rounded-full bg-gray-300 animate-slide-in-left" style={{ animationDelay: '0.1s' }}></div>
-            <div className="w-8 h-8 rounded-full bg-gray-400 animate-slide-in-left" style={{ animationDelay: '0.2s' }}></div>
-            <div className="w-8 h-8 rounded-full bg-gray-500 animate-slide-in-left" style={{ animationDelay: '0.3s' }}></div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="flex text-yellow-400 animate-pulse">
-              {"★".repeat(5)}
-            </div>
-            <span className="text-sm text-gray-600">loved by 1,000+ users</span>
-          </div>
-        </div>
+  const pathname = usePathname();
 
-        {/* Hero Section with Two Columns */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Text Content */}
-          <div className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6">
-              Centralize your
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center pt-32 lg:pt-40 pb-20 overflow-hidden">
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-neutral-50 to-primary-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
+        </motion.div>
+        
+        <div className="container relative mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
+          <motion.div 
+            className="flex-1 space-y-8"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+              <span className="bg-gradient-to-r from-neutral-800 to-neutral-600 bg-clip-text text-transparent">
+                Empowering Industry
+              </span>
               <br />
-              <span className="relative">
-                digital life
-                <div className="absolute bottom-2 -z-10 w-full h-4 bg-blue-200/60 animate-width-expand"></div>
+              <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
+                Through Automation
               </span>
             </h1>
-
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl animate-fade-in" style={{ animationDelay: '0.6s' }}>
-              Gather your links, documents, and digital resources in one beautiful hub. 
-              Your personal command center for everything online!
+            <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl">
+              We provide cutting-edge automation solutions that enhance efficiency, reduce costs, and drive innovation across industries.
             </p>
-
-            {/* Call to Action */}
-            <div className="flex flex-col sm:flex-row gap-4 items-start mb-16 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-              <div className="flex items-center w-full sm:w-auto bg-white border rounded-full p-2 pr-0 flex-1 sm:flex-initial hover:shadow-lg transition-shadow duration-300">
-                <span className="text-gray-400 px-3">centralhub.io/</span>
-                <input
-                  type="text"
-                  placeholder="username"
-                  className="flex-1 outline-none px-2"
-                />
-                <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-all duration-300 hover:scale-105">
-                  Claim
-                </button>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/contact" className="btn-primary">
+                Get Started
+              </Link>
+              <Link href="/solutions" className="btn-secondary">
+                Learn More
+              </Link>
             </div>
-          </div>
-
-          {/* Right Column - Preview Card */}
-          <div className="relative animate-float">
-            <div className="bg-white rounded-3xl shadow-xl p-8 max-w-md mx-auto transform hover:scale-105 transition-transform duration-300">
-              {/* Profile Header */}
-              <div className="flex flex-col items-center mb-8">
-                <div className="w-24 h-24 rounded-full mb-4 relative overflow-hidden bg-gradient-to-r from-blue-400 to-purple-400 flex items-center justify-center animate-pulse-slow">
-                  <span className="text-white text-4xl font-semibold">D</span>
-                </div>
-                <h2 className="text-2xl font-bold animate-fade-in" style={{ animationDelay: '1s' }}>Dhyey Patel</h2>
-                <p className="text-gray-600 animate-fade-in" style={{ animationDelay: '1.1s' }}>Full Stack Developer</p>
-                <p className="text-sm text-gray-500 mt-1 animate-fade-in" style={{ animationDelay: '1.2s' }}>Building amazing things with code</p>
-              </div>
-
-              {/* Social Links with hover animations */}
-              <div className="flex justify-center gap-4 mb-8">
-                {/* LinkedIn */}
-                <a href="#" className="w-10 h-10 rounded-full bg-[#0077B5]/10 flex items-center justify-center hover:bg-[#0077B5]/20 transition-all duration-300 hover:scale-110">
-                  <svg className="w-5 h-5 text-[#0077B5]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                  </svg>
-                </a>
-
-                {/* Instagram */}
-                <a href="#" className="w-10 h-10 rounded-full bg-[#E4405F]/10 flex items-center justify-center hover:bg-[#E4405F]/20 transition-all duration-300 hover:scale-110">
-                  <svg className="w-5 h-5 text-[#E4405F]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
-                  </svg>
-                </a>
-
-                {/* Twitter/X */}
-                <a href="#" className="w-10 h-10 rounded-full bg-black/10 flex items-center justify-center hover:bg-black/20 transition-all duration-300 hover:scale-110">
-                  <svg className="w-5 h-5 text-black" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                  </svg>
-                </a>
-
-                {/* GitHub */}
-                <a href="#" className="w-10 h-10 rounded-full bg-[#333]/10 flex items-center justify-center hover:bg-[#333]/20 transition-all duration-300 hover:scale-110">
-                  <svg className="w-5 h-5 text-[#333]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.271.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.202 2.397.1 2.65.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12c0-5.523-4.477-10-10-10z"/>
-                  </svg>
-                </a>
-              </div>
-
-              {/* Link Buttons with hover effect */}
-              <div className="space-y-3">
-                <button className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium hover:from-blue-600 hover:to-blue-700 transition-all duration-300 hover:scale-[1.02] transform">
-                  My Portfolio
-                </button>
-                <button className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 text-white font-medium hover:from-purple-600 hover:to-purple-700 transition-all duration-300 hover:scale-[1.02] transform">
-                  Latest Project
-                </button>
-                <button className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-pink-500 to-pink-600 text-white font-medium hover:from-pink-600 hover:to-pink-700 transition-all duration-300 hover:scale-[1.02] transform">
-                  Contact Me
-                </button>
-              </div>
-
-              {/* Featured Content */}
-              <div className="mt-8 p-4 bg-gray-50 rounded-xl">
-                <h3 className="font-medium mb-2">Featured Content</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="aspect-video bg-gray-200 rounded-lg"></div>
-                  <div className="aspect-video bg-gray-200 rounded-lg"></div>
-                </div>
-              </div>
+          </motion.div>
+          <motion.div 
+            className="flex-1 w-full"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <div className="relative aspect-video md:aspect-square w-full">
+              <Image
+                src="/hero/automation-hero.png"
+                alt="Automation System"
+                fill
+                className="rounded-2xl shadow-2xl shadow-slate-200/50 hover:shadow-slate-300/50 transition-shadow duration-300 object-cover"
+              />
             </div>
-          </div>
+          </motion.div>
         </div>
+      </section>
 
-        {/* Feature Preview */}
-        <div className="relative">
-          <div className="bg-blue-50 rounded-2xl p-8 max-w-md mx-auto">
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gray-200"></div>
-                  <div>
-                    <h3 className="font-semibold">Your Hub</h3>
-                    <p className="text-sm text-gray-500">Organize everything in one place</p>
+      {/* Solutions Preview Section */}
+      <AnimatedSection>
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              <span className="heading-gradient">Our Solutions</span>
+            </h2>
+            <motion.div 
+              className="grid md:grid-cols-2 gap-8"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              {[
+                {
+                  title: "Industrial Automation",
+                  description: "Complete automation solutions for manufacturing processes with PLC, SCADA, and HMI integration",
+                  image: "/solutions/industrial-automation.jpg"
+                },
+                {
+                  title: "Process Automation",
+                  description: "Advanced control systems for optimizing industrial processes and improving efficiency",
+                  image: "/solutions/process-automation.jpg"
+                }
+              ].map((solution, index) => (
+                <Link 
+                  key={index}
+                  href={`/solutions#${solution.title.toLowerCase().replace(/ /g, '-')}`}
+                  className="group relative overflow-hidden rounded-2xl"
+                >
+                  <div className="relative h-64 w-full">
+                    <Image
+                      src={solution.image}
+                      alt={solution.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
+                  <div className="absolute bottom-0 p-6 text-white">
+                    <h3 className="text-xl font-semibold mb-2">{solution.title}</h3>
+                    <p className="text-white/80">{solution.description}</p>
+                  </div>
+                </Link>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Features Section */}
+      <section className="section-padding bg-white">
+        <div className="container">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16">
+            <span className="heading-gradient">Our Expertise</span>
+          </h2>
+          <motion.div 
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                title: "PLC Programming",
+                description: "Expert programming for Allen Bradley, Siemens, and other major PLC platforms",
+                icon: "⚡",
+                image: "/features/plc-programming.jpg"
+              },
+              {
+                title: "SCADA Systems",
+                description: "Custom SCADA solutions for real-time monitoring and control",
+                icon: "🖥️",
+                image: "/features/scada-systems.jpg"
+              },
+              {
+                title: "HMI Development",
+                description: "User-friendly interface design for efficient machine operation",
+                icon: "🔧",
+                image: "/features/hmi-development.jpg"
+              }
+            ].map((feature, index) => (
+              <motion.div 
+                key={index} 
+                className="card group"
+                variants={fadeIn}
+              >
+                <div className="relative h-48 lg:h-56">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <div className="space-y-3">
-                  <div className="bg-purple-100 rounded-lg p-3">Links</div>
-                  <div className="bg-blue-100 rounded-lg p-3">Documents</div>
-                  <div className="bg-green-100 rounded-lg p-3">Social Media</div>
-                  <div className="bg-yellow-100 rounded-lg p-3">Resources</div>
+                <div className="p-6 lg:p-8">
+                  <div className="text-4xl mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-semibold mb-3 text-neutral-800">
+                    {feature.title}
+                  </h3>
+                  <p className="text-neutral-600 leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
-              </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <AnimatedSection>
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-6">
+            <motion.div 
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              {[
+                { number: "15+", label: "Years Experience" },
+                { number: "500+", label: "Projects Completed" },
+                { number: "100+", label: "Happy Clients" },
+                { number: "24/7", label: "Support Available" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="text-center"
+                  variants={fadeIn}
+                >
+                  <motion.div 
+                    className="text-4xl font-bold text-blue-600 mb-2"
+                    initial={{ scale: 0.5 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    {stat.number}
+                  </motion.div>
+                  <div className="text-slate-600">{stat.label}</div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Value Proposition Section */}
+      <AnimatedSection>
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <span className="heading-gradient">Why Choose Axon Automation?</span>
+              </h2>
+              <p className="text-slate-600 text-lg">
+                We deliver cutting-edge automation solutions that transform businesses and drive operational excellence.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: "🎯",
+                  title: "Industry Expertise",
+                  description: "15+ years of experience in industrial automation and control systems"
+                },
+                {
+                  icon: "💡",
+                  title: "Innovation Focus",
+                  description: "Cutting-edge solutions using the latest automation technologies"
+                },
+                {
+                  icon: "🤝",
+                  title: "Dedicated Support",
+                  description: "24/7 technical support and maintenance services"
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={{
+                    initial: { opacity: 0, y: 20 },
+                    animate: { opacity: 1, y: 0 }
+                  }}
+                  className="text-center p-6 rounded-xl bg-gradient-to-b from-slate-50 to-slate-100/50"
+                >
+                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <h3 className="text-xl font-semibold mb-3 text-slate-800">{item.title}</h3>
+                  <p className="text-slate-600">{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Industries Served Section */}
+      <AnimatedSection>
+        <section className="py-16 bg-slate-50">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              <span className="heading-gradient">Industries We Serve</span>
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  name: "Manufacturing",
+                  icon: "🏭",
+                  description: "Smart manufacturing solutions and process automation"
+                },
+                {
+                  name: "Pharmaceuticals",
+                  icon: "💊",
+                  description: "Precision control systems for pharmaceutical production"
+                },
+                {
+                  name: "Food & Beverage",
+                  icon: "🍽️",
+                  description: "Automated processing and packaging solutions"
+                },
+                {
+                  name: "Energy",
+                  icon: "⚡",
+                  description: "Power distribution and energy management systems"
+                }
+              ].map((industry, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="text-3xl mb-4">{industry.icon}</div>
+                  <h3 className="text-lg font-semibold mb-2">{industry.name}</h3>
+                  <p className="text-slate-600 text-sm">{industry.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Case Studies Section */}
+      <AnimatedSection>
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              <span className="heading-gradient">Success Stories</span>
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Manufacturing Excellence",
+                  client: "Tech Manufacturing Co.",
+                  result: "50% increase in production efficiency",
+                  image: "/case-studies/manufacturing.jpg"
+                },
+                {
+                  title: "Smart Factory Implementation",
+                  client: "Global Foods Ltd.",
+                  result: "30% reduction in operational costs",
+                  image: "/case-studies/smart-factory.jpg"
+                },
+                {
+                  title: "Process Optimization",
+                  client: "PharmaTech Industries",
+                  result: "99.9% quality assurance rate",
+                  image: "/case-studies/process.jpg"
+                }
+              ].map((study, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="relative h-48">
+                    <Image
+                      src={study.image}
+                      alt={study.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{study.title}</h3>
+                    <p className="text-slate-600 mb-4">Client: {study.client}</p>
+                    <div className="flex items-center text-green-600">
+                      <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {study.result}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* CTA Section */}
+      <section className="section-padding bg-gradient-to-br from-primary-600 to-primary-500 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10" />
+        <div className="container relative">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+              Ready to Transform Your Operations?
+            </h2>
+            <p className="text-lg text-primary-50 mb-8 leading-relaxed">
+              Let's discuss how our automation solutions can help your business achieve new levels of efficiency and innovation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact" className="btn-primary bg-white text-white hover:bg-primary-50">
+                Schedule a Consultation
+              </Link>
+              <Link href="/solutions" className="btn-secondary !border-white !text-white hover:bg-white/10">
+                View Our Solutions
+              </Link>
             </div>
           </div>
         </div>
-      </main>
+      </section>
 
-      {/* Features Banner with slide-in animation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-amber-100 py-4 animate-slide-in-up">
-        <div className="max-w-4xl mx-auto flex justify-around items-center text-sm font-medium">
-          <span className="flex items-center gap-2">
-            <span className="w-6 h-6 bg-amber-200 rounded-full"></span>
-            FULLY CUSTOMIZABLE
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-6 h-6 bg-amber-200 rounded-full"></span>
-            INSTANT SETUP
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-6 h-6 bg-amber-200 rounded-full"></span>
-            POWERFUL FEATURES
-          </span>
+      {/* Footer */}
+      <footer className="bg-neutral-900 text-white py-16 lg:py-20">
+        <div className="container">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="relative w-12 h-12">
+                  <Image
+                    src="/logo.png"
+                    alt="Axon Automation Logo"
+                    fill
+                    className="object-contain brightness-0 invert"
+                  />
+                </div>
+                <span className="text-2xl font-bold text-white">
+                  Axon Automation
+                </span>
+              </div>
+              <p className="text-neutral-300 leading-relaxed">
+                Leading the future of technology with innovative automation solutions.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-bold mb-4">Quick Links</h4>
+              <ul className="space-y-3">
+                {[
+                  { name: 'Solutions', path: '/solutions' },
+                  { name: 'Products', path: '/products' },
+                  { name: 'Features', path: '/features' },
+                  { name: 'About', path: '/about' },
+                  { name: 'Contact', path: '/contact' }
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.path}
+                      className="text-neutral-300 hover:text-white transition-colors duration-200"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-bold mb-4">Contact</h4>
+              <ul className="space-y-3 text-slate-300">
+                <li>Email: info@axonauto.com</li>
+                <li>Phone: +1 (555) 123-4567</li>
+                <li>Address: Innovation Hub, Tech City</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-bold mb-4">Follow Us</h4>
+              <div className="flex gap-4">
+                <a href="#" className="text-slate-300 hover:text-white transition-colors duration-200">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 pt-8 border-t border-neutral-800 text-neutral-400 text-sm text-center">
+            © {new Date().getFullYear()} Axon Automation. All rights reserved.
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
