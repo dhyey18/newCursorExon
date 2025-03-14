@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
-export default function Contact() {
+function ContactContent() {
   const searchParams = useSearchParams();
   const product = searchParams.get('product');
 
@@ -190,5 +191,13 @@ export default function Contact() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Contact() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ContactContent />
+    </Suspense>
   );
 } 
