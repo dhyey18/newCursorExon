@@ -12,9 +12,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
   const navItems = [
-    { name: 'Solutions', path: '/solutions' },
     { name: 'Products', path: '/products' },
-    { name: 'Features', path: '/features' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' }
   ];
@@ -41,19 +39,19 @@ export default function Navigation() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
-            <div className="relative w-10 h-10 md:w-12 md:h-12">
+            {/* <div className="relative w-10 h-10 md:w-12 md:h-12">
               <Image
                 src="/logo.png"
-                alt="Axon Automation Logo"
+                alt="MetronixSystem Logo"
                 fill
                 className="object-contain"
                 priority
               />
-            </div>
+            </div> */}
             <span className={`text-xl md:text-2xl font-bold heading-gradient ${
               scrolled ? 'text-neutral-800' : 'text-gray-900'
             }`}>
-              Axon Automation
+              MetronixSystem
             </span>
           </Link>
           
@@ -72,7 +70,7 @@ export default function Navigation() {
               href="/contact"
               className="btn-primary ml-4"
             >
-              Get Started
+              Get Quote
             </Link>
           </div>
 
@@ -134,7 +132,7 @@ export default function Navigation() {
               className="block w-full mt-4 btn-primary text-center"
               onClick={() => setIsMenuOpen(false)}
             >
-              Get Started
+              Get Quote
             </Link>
           </div>
         </div>

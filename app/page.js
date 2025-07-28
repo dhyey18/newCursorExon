@@ -45,22 +45,22 @@ export default function Home() {
           >
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
               <span className="bg-gradient-to-r from-neutral-800 to-neutral-600 bg-clip-text text-transparent">
-                Empowering Industry
+                Industrial Automation
               </span>
               <br />
               <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
-                Through Automation
+                Machinery Solutions
               </span>
             </h1>
             <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl">
-              We provide cutting-edge automation solutions that enhance efficiency, reduce costs, and drive innovation across industries.
+              Leading provider of high-quality industrial automation machinery and equipment. We deliver precision-engineered solutions for manufacturing, packaging, and process automation across diverse industries.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact" className="btn-primary">
-                Get Started
+                Request Quote
               </Link>
-              <Link href="/solutions" className="btn-secondary">
-                Learn More
+              <Link href="/products" className="btn-secondary">
+                View Products
               </Link>
             </div>
           </motion.div>
@@ -73,7 +73,7 @@ export default function Home() {
             <div className="relative aspect-video md:aspect-square w-full">
               <Image
                 src="/hero/automation-hero.png"
-                alt="Automation System"
+                alt="Industrial Automation Machinery"
                 fill
                 className="rounded-2xl shadow-2xl shadow-slate-200/50 hover:shadow-slate-300/50 transition-shadow duration-300 object-cover"
               />
@@ -87,7 +87,7 @@ export default function Home() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              <span className="heading-gradient">Our Solutions</span>
+              <span className="heading-gradient">Our Product Categories</span>
             </h2>
             <motion.div 
               className="grid md:grid-cols-2 gap-8"
@@ -98,19 +98,19 @@ export default function Home() {
             >
               {[
                 {
-                  title: "Industrial Automation",
-                  description: "Complete automation solutions for manufacturing processes with PLC, SCADA, and HMI integration",
-                  image: "/solutions/industrial-automation.jpg"
+                  title: "CNC Machines",
+                  description: "High-precision computer numerical control machines for manufacturing and machining operations",
+                  image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
-                  title: "Process Automation",
-                  description: "Advanced control systems for optimizing industrial processes and improving efficiency",
-                  image: "/solutions/process-automation.jpg"
+                  title: "Packaging Equipment",
+                  description: "Automated packaging machinery for efficient product packaging and sealing processes",
+                  image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 }
               ].map((solution, index) => (
                 <Link 
                   key={index}
-                  href={`/solutions#${solution.title.toLowerCase().replace(/ /g, '-')}`}
+                  href={`/products/${solution.title.toLowerCase().replace(/ /g, '-')}`}
                   className="group relative overflow-hidden rounded-2xl"
                 >
                   <div className="relative h-64 w-full">
@@ -146,26 +146,26 @@ export default function Home() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {[
-              {
-                title: "PLC Programming",
-                description: "Expert programming for Allen Bradley, Siemens, and other major PLC platforms",
-                icon: "⚡",
-                image: "/features/plc-programming.jpg"
-              },
-              {
-                title: "SCADA Systems",
-                description: "Custom SCADA solutions for real-time monitoring and control",
-                icon: "🖥️",
-                image: "/features/scada-systems.jpg"
-              },
-              {
-                title: "HMI Development",
-                description: "User-friendly interface design for efficient machine operation",
-                icon: "🔧",
-                image: "/features/hmi-development.jpg"
-              }
-            ].map((feature, index) => (
+                          {[
+                {
+                  title: "Precision Engineering",
+                  description: "State-of-the-art machinery engineered for maximum precision and reliability in industrial applications",
+                  icon: "⚙️",
+                  image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                  title: "Automation Control",
+                  description: "Advanced control systems for seamless automation and process optimization",
+                  icon: "🖥️",
+                  image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                  title: "Custom Solutions",
+                  description: "Tailored machinery solutions designed to meet specific industrial requirements",
+                  icon: "🔧",
+                  image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                }
+              ].map((feature, index) => (
               <motion.div 
                 key={index} 
                 className="card group"
@@ -239,10 +239,10 @@ export default function Home() {
           <div className="container mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                <span className="heading-gradient">Why Choose Axon Automation?</span>
+                <span className="heading-gradient">Why Choose MetronixSystem?</span>
               </h2>
               <p className="text-slate-600 text-lg">
-                We deliver cutting-edge automation solutions that transform businesses and drive operational excellence.
+                We deliver premium industrial automation machinery that transforms manufacturing processes and drives operational excellence.
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
@@ -250,17 +250,17 @@ export default function Home() {
                 {
                   icon: "🎯",
                   title: "Industry Expertise",
-                  description: "15+ years of experience in industrial automation and control systems"
+                  description: "20+ years of experience in industrial automation machinery and equipment manufacturing"
                 },
                 {
                   icon: "💡",
                   title: "Innovation Focus",
-                  description: "Cutting-edge solutions using the latest automation technologies"
+                  description: "Cutting-edge machinery solutions using the latest automation and control technologies"
                 },
                 {
                   icon: "🤝",
                   title: "Dedicated Support",
-                  description: "24/7 technical support and maintenance services"
+                  description: "Comprehensive technical support, training, and maintenance services for all our machinery"
                 }
               ].map((item, index) => (
                 <motion.div
@@ -293,22 +293,22 @@ export default function Home() {
                 {
                   name: "Manufacturing",
                   icon: "🏭",
-                  description: "Smart manufacturing solutions and process automation"
+                  description: "Advanced manufacturing machinery for automotive, electronics, and general manufacturing"
                 },
                 {
                   name: "Pharmaceuticals",
                   icon: "💊",
-                  description: "Precision control systems for pharmaceutical production"
+                  description: "Precision machinery for pharmaceutical production and packaging with GMP compliance"
                 },
                 {
                   name: "Food & Beverage",
                   icon: "🍽️",
-                  description: "Automated processing and packaging solutions"
+                  description: "Hygienic automation equipment for food processing and beverage production"
                 },
                 {
-                  name: "Energy",
-                  icon: "⚡",
-                  description: "Power distribution and energy management systems"
+                  name: "Packaging",
+                  icon: "📦",
+                  description: "Complete packaging lines including filling, sealing, labeling, and wrapping machines"
                 }
               ].map((industry, index) => (
                 <motion.div
@@ -336,22 +336,22 @@ export default function Home() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Manufacturing Excellence",
-                  client: "Tech Manufacturing Co.",
-                  result: "50% increase in production efficiency",
-                  image: "/case-studies/manufacturing.jpg"
+                  title: "CNC Machining Center Implementation",
+                  client: "Precision Parts Manufacturing",
+                  result: "60% increase in production capacity",
+                  image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
-                  title: "Smart Factory Implementation",
-                  client: "Global Foods Ltd.",
-                  result: "30% reduction in operational costs",
-                  image: "/case-studies/smart-factory.jpg"
+                  title: "Automated Packaging Line",
+                  client: "FoodTech Solutions Ltd.",
+                  result: "40% reduction in packaging time",
+                  image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
-                  title: "Process Optimization",
-                  client: "PharmaTech Industries",
-                  result: "99.9% quality assurance rate",
-                  image: "/case-studies/process.jpg"
+                  title: "Pharmaceutical Equipment Upgrade",
+                  client: "MediCore Industries",
+                  result: "99.8% OEE improvement",
+                  image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 }
               ].map((study, index) => (
                 <motion.div
@@ -390,17 +390,17 @@ export default function Home() {
         <div className="container relative">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-              Ready to Transform Your Operations?
+              Ready to Upgrade Your Manufacturing?
             </h2>
             <p className="text-lg text-primary-50 mb-8 leading-relaxed">
-              Let's discuss how our automation solutions can help your business achieve new levels of efficiency and innovation.
+              Let's discuss how our industrial automation machinery can help your business achieve new levels of efficiency and productivity.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="btn-primary bg-white text-white hover:bg-primary-50">
-                Schedule a Consultation
+              <Link href="/contact" className="btn-primary bg-white text-primary-600 hover:bg-primary-50">
+                Request Quote
               </Link>
-              <Link href="/solutions" className="btn-secondary !border-white !text-white hover:bg-white/10">
-                View Our Solutions
+              <Link href="/products" className="btn-secondary !border-white !text-white hover:bg-white/10">
+                View Our Products
               </Link>
             </div>
           </div>
@@ -413,31 +413,31 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="relative w-12 h-12">
+                {/* <div className="relative w-12 h-12">
                   <Image
                     src="/logo.png"
-                    alt="Axon Automation Logo"
+                    alt="MetronixSystem Logo"
                     fill
                     className="object-contain brightness-0 invert"
                   />
-                </div>
+                </div> */}
                 <span className="text-2xl font-bold text-white">
-                  Axon Automation
+                  MetronixSystem
                 </span>
               </div>
               <p className="text-neutral-300 leading-relaxed">
-                Leading the future of technology with innovative automation solutions.
+                Leading provider of industrial automation machinery and equipment for manufacturing excellence.
               </p>
             </div>
             <div>
               <h4 className="text-lg font-bold mb-4">Quick Links</h4>
               <ul className="space-y-3">
                 {[
-                  { name: 'Solutions', path: '/solutions' },
                   { name: 'Products', path: '/products' },
-                  { name: 'Features', path: '/features' },
-                  { name: 'About', path: '/about' },
-                  { name: 'Contact', path: '/contact' }
+                  { name: 'About Us', path: '/about' },
+                  { name: 'Contact', path: '/contact' },
+                  { name: 'Privacy Policy', path: '/privacy' },
+                  { name: 'Terms & Conditions', path: '/terms' }
                 ].map((item) => (
                   <li key={item.name}>
                     <Link
@@ -453,9 +453,9 @@ export default function Home() {
             <div>
               <h4 className="text-lg font-bold mb-4">Contact</h4>
               <ul className="space-y-3 text-slate-300">
-                <li>Email: info@axonauto.com</li>
-                <li>Phone: +1 (555) 123-4567</li>
-                <li>Address: Innovation Hub, Tech City</li>
+                <li>Email: support@metronixsystem.com</li>
+                <li>Phone: +91 9924428852</li>
+                <li>Address: surat, Gujarat, India</li>
               </ul>
             </div>
             <div>
@@ -470,7 +470,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-neutral-800 text-neutral-400 text-sm text-center">
-            © {new Date().getFullYear()} Axon Automation. All rights reserved.
+            © {new Date().getFullYear()} MetronixSystem. All rights reserved.
           </div>
         </div>
       </footer>

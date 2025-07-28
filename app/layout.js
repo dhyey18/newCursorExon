@@ -5,8 +5,8 @@ import Navigation from './components/Navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "Axon Automation",
-  description: "Advanced Automation Solutions",
+  title: "MetronixSystem - Industrial Automation Machinery",
+  description: "Leading provider of industrial automation machinery and solutions for manufacturing excellence",
 };
 
 export default function RootLayout({ children }) {
