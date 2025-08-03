@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import AnimatedSection from './components/AnimatedSection';
+import AnimatedSection, { StaggerContainer, RevealOnScroll, TextReveal } from './components/AnimatedSection';
+import FloatingElements, { AnimatedBackground } from './components/FloatingElements';
+import { LoadingButton, FloatingActionButton } from './components/LoadingComponents';
 
 export default function Home() {
   const pathname = usePathname();
@@ -25,174 +27,317 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-32 lg:pt-40 pb-20 overflow-hidden">
+      {/* Floating Action Button */}
+      <FloatingActionButton onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </FloatingActionButton>
+
+      {/* Enhanced Hero Section */}
+      <section className="relative min-h-[100vh] flex items-center pt-32 lg:pt-40 pb-20 overflow-hidden">
+        {/* Animated Background */}
+        <AnimatedBackground variant="wave" />
+        
+        {/* Floating Elements */}
+        <FloatingElements density="medium" />
+        
+        {/* Main Background with Advanced Gradient */}
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-neutral-50 to-primary-50"
+          className="absolute inset-0 hero-bg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1.5 }}
         >
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+          {/* Animated Gradient Overlay */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-emerald-500/10"
+            animate={{
+              backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
         </motion.div>
         
         <div className="container relative mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
           <motion.div 
             className="flex-1 space-y-8"
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-              <span className="bg-gradient-to-r from-neutral-800 to-neutral-600 bg-clip-text text-transparent">
+            <TextReveal className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+              <span className="bg-gradient-to-r from-neutral-800 via-neutral-700 to-neutral-600 bg-clip-text text-transparent">
                 Industrial Automation
               </span>
               <br />
-              <span className="bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary-600 via-primary-500 to-primary-700 bg-clip-text text-transparent text-shimmer">
                 Machinery Solutions
               </span>
-            </h1>
-            <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl">
+            </TextReveal>
+            
+            <motion.p 
+              className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
               Leading provider of high-quality industrial automation machinery and equipment. We deliver precision-engineered solutions for manufacturing, packaging, and process automation across diverse industries.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="btn-primary">
-                Request Quote
+            </motion.p>
+            
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+            >
+              <LoadingButton variant="primary" className="group">
+                <span>Request Quote</span>
+                <motion.svg 
+                  className="w-4 h-4 ml-2" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </motion.svg>
+              </LoadingButton>
+              <Link href="/products" className="btn-secondary group">
+                <span>View Products</span>
+                <motion.svg 
+                  className="w-4 h-4 ml-2" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                  whileHover={{ scale: 1.2, rotate: 360 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </motion.svg>
               </Link>
-              <Link href="/products" className="btn-secondary">
-                View Products
-              </Link>
-            </div>
+            </motion.div>
           </motion.div>
+          
           <motion.div 
-            className="flex-1 w-full"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex-1 w-full relative"
+            initial={{ opacity: 0, x: 60, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <div className="relative aspect-video md:aspect-square w-full">
+            <motion.div 
+              className="relative aspect-video md:aspect-square w-full"
+              whileHover={{ scale: 1.02, rotateY: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <Image
                 src="/hero/automation-hero.png"
                 alt="Industrial Automation Machinery"
                 fill
-                className="rounded-2xl shadow-2xl shadow-slate-200/50 hover:shadow-slate-300/50 transition-shadow duration-300 object-cover"
+                className="rounded-2xl shadow-2xl shadow-slate-200/50 hover:shadow-primary-300/30 transition-all duration-500 object-cover"
+                priority
               />
-            </div>
+              
+              {/* Floating Stats */}
+              <motion.div
+                className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-xl border border-white/20"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+              >
+                <div className="text-2xl font-bold text-primary-600">500+</div>
+                <div className="text-sm text-neutral-600">Projects Completed</div>
+              </motion.div>
+              
+              <motion.div
+                className="absolute -top-6 -right-6 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-xl border border-white/20"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.8 }}
+                whileHover={{ scale: 1.05, y: 5 }}
+              >
+                <div className="text-2xl font-bold text-emerald-600">20+</div>
+                <div className="text-sm text-neutral-600">Years Experience</div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Solutions Preview Section */}
-      <AnimatedSection>
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-6">
+      {/* Enhanced Solutions Preview Section */}
+      <AnimatedSection variant="scale" className="py-16 bg-white/80 backdrop-blur-sm relative">
+        <FloatingElements variant="particles" />
+        <div className="container mx-auto px-6">
+          <RevealOnScroll direction="up">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               <span className="heading-gradient">Our Product Categories</span>
             </h2>
-            <motion.div 
-              className="grid md:grid-cols-2 gap-8"
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
-              {[
-                {
-                  title: "CNC Machines",
-                  description: "High-precision computer numerical control machines for manufacturing and machining operations",
-                  image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                },
-                {
-                  title: "Packaging Equipment",
-                  description: "Automated packaging machinery for efficient product packaging and sealing processes",
-                  image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                }
-              ].map((solution, index) => (
+          </RevealOnScroll>
+          
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                title: "CNC Machines",
+                description: "High-precision computer numerical control machines for manufacturing and machining operations",
+                image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                color: "from-blue-500 to-blue-700"
+              },
+              {
+                title: "Packaging Equipment",
+                description: "Automated packaging machinery for efficient product packaging and sealing processes",
+                image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                color: "from-emerald-500 to-emerald-700"
+              }
+            ].map((solution, index) => (
+              <motion.div
+                key={index}
+                variants={fadeIn}
+                whileHover={{ scale: 1.02, y: -8 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <Link 
-                  key={index}
                   href={`/products/${solution.title.toLowerCase().replace(/ /g, '-')}`}
-                  className="group relative overflow-hidden rounded-2xl"
+                  className="group relative overflow-hidden rounded-2xl block"
                 >
-                  <div className="relative h-64 w-full">
+                  <div className="relative h-80 w-full">
                     <Image
                       src={solution.image}
                       alt={solution.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${solution.color} opacity-60 group-hover:opacity-70 transition-opacity duration-300`} />
+                    
+                    {/* Animated Overlay */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
+                      whileHover={{ background: "linear-gradient(to top, rgba(0,0,0,0.4), transparent)" }}
+                    />
                   </div>
-                  <div className="absolute bottom-0 p-6 text-white">
-                    <h3 className="text-xl font-semibold mb-2">{solution.title}</h3>
-                    <p className="text-white/80">{solution.description}</p>
+                  
+                  <div className="absolute bottom-0 p-8 text-white">
+                    <motion.h3 
+                      className="text-2xl font-bold mb-3"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {solution.title}
+                    </motion.h3>
+                    <motion.p 
+                      className="text-white/90 leading-relaxed"
+                      initial={{ opacity: 0.8 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      {solution.description}
+                    </motion.p>
+                    
+                    <motion.div
+                      className="mt-4 inline-flex items-center text-white/90 font-medium"
+                      whileHover={{ x: 5 }}
+                    >
+                      Learn More
+                      <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </motion.div>
                   </div>
                 </Link>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+              </motion.div>
+            ))}
+          </StaggerContainer>
+        </div>
       </AnimatedSection>
 
-      {/* Features Section */}
-      <section className="section-padding bg-white">
+      {/* Enhanced Features Section */}
+      <AnimatedSection variant="fadeUp" className="section-padding bg-white relative overflow-hidden">
+        <FloatingElements density="low" />
         <div className="container">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16">
-            <span className="heading-gradient">Our Expertise</span>
-          </h2>
-          <motion.div 
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-                          {[
-                {
-                  title: "Precision Engineering",
-                  description: "State-of-the-art machinery engineered for maximum precision and reliability in industrial applications",
-                  icon: "⚙️",
-                  image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                },
-                {
-                  title: "Automation Control",
-                  description: "Advanced control systems for seamless automation and process optimization",
-                  icon: "🖥️",
-                  image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                },
-                {
-                  title: "Custom Solutions",
-                  description: "Tailored machinery solutions designed to meet specific industrial requirements",
-                  icon: "🔧",
-                  image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                }
-              ].map((feature, index) => (
+          <RevealOnScroll direction="down">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16">
+              <span className="heading-gradient">Our Expertise</span>
+            </h2>
+          </RevealOnScroll>
+          
+          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Precision Engineering",
+                description: "State-of-the-art machinery engineered for maximum precision and reliability in industrial applications",
+                icon: "⚙️",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                gradient: "from-blue-500/10 to-blue-600/5"
+              },
+              {
+                title: "Automation Control",
+                description: "Advanced control systems for seamless automation and process optimization",
+                icon: "🖥️",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                gradient: "from-emerald-500/10 to-emerald-600/5"
+              },
+              {
+                title: "Custom Solutions",
+                description: "Tailored machinery solutions designed to meet specific industrial requirements",
+                icon: "🔧",
+                image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                gradient: "from-purple-500/10 to-purple-600/5"
+              }
+            ].map((feature, index) => (
               <motion.div 
                 key={index} 
-                className="card group"
+                className="card group relative"
                 variants={fadeIn}
+                whileHover={{ y: -10, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                <div className="relative h-48 lg:h-56">
+                <div className="relative h-48 lg:h-56 overflow-hidden rounded-t-2xl">
                   <Image
                     src={feature.image}
                     alt={feature.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} group-hover:opacity-80 transition-opacity duration-300`} />
                 </div>
-                <div className="p-6 lg:p-8">
-                  <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3 text-neutral-800">
+                
+                <div className="p-6 lg:p-8 relative">
+                  <motion.div 
+                    className="text-4xl mb-4"
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    {feature.icon}
+                  </motion.div>
+                  <h3 className="text-xl font-semibold mb-3 text-neutral-800 group-hover:text-primary-600 transition-colors">
                     {feature.title}
                   </h3>
                   <p className="text-neutral-600 leading-relaxed">
                     {feature.description}
                   </p>
+                  
+                  {/* Hover Effect Arrow */}
+                  <motion.div
+                    className="absolute bottom-6 right-6 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100"
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileHover={{ scale: 1, rotate: 0 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </StaggerContainer>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Stats Section */}
       <AnimatedSection>
