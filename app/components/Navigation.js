@@ -33,7 +33,7 @@ export default function Navigation() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/80 backdrop-blur-md shadow-sm' : 'bg-transparent'
+        scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-neutral-200/20' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-6 py-4">
@@ -48,8 +48,8 @@ export default function Navigation() {
                 priority
               />
             </div> */}
-            <span className={`text-xl md:text-2xl font-bold heading-gradient ${
-              scrolled ? 'text-neutral-800' : 'text-gray-900'
+            <span className={`text-xl md:text-2xl font-bold transition-colors duration-300 ${
+              scrolled ? 'text-steel-800' : 'text-steel-900'
             }`}>
               MetronixSystem
             </span>
@@ -61,7 +61,13 @@ export default function Navigation() {
               <Link
                 key={item.name}
                 href={item.path}
-                className={`nav-link ${pathname === item.path ? 'nav-link-active' : ''}`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  pathname === item.path 
+                    ? 'text-primary-600 bg-primary-50' 
+                    : scrolled 
+                      ? 'text-steel-700 hover:text-steel-900 hover:bg-steel-100' 
+                      : 'text-steel-700 hover:text-steel-900 hover:bg-white/10'
+                }`}
               >
                 {item.name}
               </Link>
@@ -76,13 +82,17 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden p-2 hover:bg-neutral-100 rounded-lg transition-colors"
+            className={`md:hidden p-2 rounded-lg transition-colors ${
+              scrolled 
+                ? 'hover:bg-steel-100 text-steel-600' 
+                : 'hover:bg-white/10 text-steel-700'
+            }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              className="h-6 w-6 text-neutral-600" 
+              className="h-6 w-6" 
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"
@@ -112,7 +122,7 @@ export default function Navigation() {
             isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="py-4 space-y-2">
+          <div className={`py-4 space-y-2 ${scrolled ? 'bg-white/95' : 'bg-white/90'} rounded-lg mt-4 backdrop-blur-sm`}>
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -120,8 +130,8 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
                 className={`block px-4 py-3 rounded-lg font-medium transition-colors
                   ${pathname === item.path 
-                    ? 'nav-link-active' 
-                    : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
+                    ? 'text-primary-600 bg-primary-50' 
+                    : 'text-steel-700 hover:text-steel-900 hover:bg-steel-100'
                   }`}
               >
                 {item.name}
