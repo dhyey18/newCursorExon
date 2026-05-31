@@ -152,7 +152,7 @@ function ContactForm() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-steel-800 mb-1">Visit Our Facility</h3>
-                    <p className="text-steel-600">surat, Gujarat, India</p>
+                    <p className="text-steel-600">, Gujarat — 395 003, India</p>
                   </div>
                 </div>
 
@@ -180,8 +180,8 @@ function ContactForm() {
                   <div>
                     <h3 className="font-semibold text-steel-800 mb-1">Email Us</h3>
                     <p className="text-steel-600">
-                      <a href="mailto:info@metronixsystem.com" className="hover:text-primary-600">info@metronixsystem.com</a><br />
-                      <a href="mailto:support@metronixsystem.com" className="hover:text-primary-600">support@metronixsystem.com</a>
+                      <a href="mailto:info@axonautomation.in" className="hover:text-primary-600">info@axonautomation.in</a><br />
+                      <a href="mailto:support@axonautomation.in" className="hover:text-primary-600">support@axonautomation.in</a>
                     </p>
                   </div>
                 </div>
@@ -205,7 +205,7 @@ function ContactForm() {
                     <h4 className="font-medium text-steel-800">{product.name}</h4>
                     <p className="text-sm text-steel-500">{product.brand}</p>
                     <p className="text-primary-600 font-semibold">
-                      ${product.price.toLocaleString()}
+                      {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0 }).format(product.price)}
                     </p>
                   </div>
                 </div>
@@ -390,11 +390,11 @@ function ContactForm() {
                   className="form-input"
                 >
                   <option value="">Select budget range</option>
-                  <option value="under-50k">Under $50,000</option>
-                  <option value="50k-100k">$50,000 - $100,000</option>
-                  <option value="100k-250k">$100,000 - $250,000</option>
-                  <option value="250k-500k">$250,000 - $500,000</option>
-                  <option value="over-500k">Over $500,000</option>
+                  <option value="under-25k">Under ₹25,000</option>
+                  <option value="25k-100k">₹25,000 – ₹1,00,000</option>
+                  <option value="100k-500k">₹1,00,000 – ₹5,00,000</option>
+                  <option value="500k-1m">₹5,00,000 – ₹10,00,000</option>
+                  <option value="over-1m">Over ₹10,00,000</option>
                 </select>
               </div>
 
@@ -407,7 +407,7 @@ function ContactForm() {
                   value={formData.message}
                   onChange={handleInputChange}
                   className={`form-textarea ${errors.message ? 'border-red-500' : ''}`}
-                  placeholder="Please provide details about your project requirements, timeline, and any specific questions you have about our machinery..."
+                  placeholder="Please share your requirements — product model, quantity, application details, and any questions about pricing or availability..."
                 />
                 {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
               </div>
@@ -423,7 +423,7 @@ function ContactForm() {
                   className="mt-1 mr-3"
                 />
                 <label htmlFor="consent" className="text-sm text-steel-600">
-                  I agree to the <a href="/privacy" className="text-primary-600 hover:underline">Privacy Policy</a> and consent to MetronixSystem contacting me about products and services. *
+                  I agree to the <a href="/privacy" className="text-primary-600 hover:underline">Privacy Policy</a> and consent to Axon Automation contacting me about products and services. *
                 </label>
               </div>
               {errors.consent && <p className="text-red-500 text-sm">{errors.consent}</p>}
@@ -482,9 +482,9 @@ function ContactFormSkeleton() {
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-steel-900 via-steel-800 to-industrial-900">
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-steel-900 via-steel-800 to-industrial-900 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="container relative">
           <motion.div
@@ -494,10 +494,10 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Contact MetronixSystem
+              Contact Axon Automation
             </h1>
             <p className="text-xl text-steel-200 max-w-3xl mx-auto">
-              Ready to transform your manufacturing? Get in touch with our automation experts for personalized solutions and competitive quotes.
+              Need a PLC, HMI or VFD quote? Get in touch with our team and we'll respond within 24 hours with pricing and availability.
             </p>
           </motion.div>
         </div>

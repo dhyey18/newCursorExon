@@ -58,9 +58,9 @@ export default function Products() {
   };
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'INR',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
@@ -79,10 +79,10 @@ export default function Products() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Industrial Machinery Catalog
+              PLC, HMI &amp; Drive Products
             </h1>
             <p className="text-xl text-steel-200 max-w-3xl mx-auto">
-              Discover our comprehensive range of precision-engineered automation machinery and equipment designed for modern manufacturing excellence.
+              Browse our authorised range of PLCs, HMIs, VFDs and SCADA software from Siemens, Allen Bradley, Mitsubishi, Schneider Electric, Delta and more.
             </p>
           </motion.div>
         </div>

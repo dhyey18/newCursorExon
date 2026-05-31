@@ -255,7 +255,7 @@ export default function Terms() {
                 <p className="text-steel-600 mb-2"><strong>MetronixSystem Legal Department</strong></p>
                 <p className="text-steel-600 mb-2">Email: support@metronixsystem.com</p>
                 <p className="text-steel-600 mb-2">Phone: +91 9924428852</p>
-                <p className="text-steel-600 mb-2">Address: surat, Gujarat, India</p>
+                <p className="text-steel-600 mb-2">Address: , Gujarat, India</p>
               </div>
             </section>
           </div>

@@ -5,8 +5,8 @@ import Navigation from './components/Navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "MetronixSystem - Industrial Automation Machinery",
-  description: "Leading provider of industrial automation machinery and solutions for manufacturing excellence",
+  title: "Axon Automation — PLC & HMI Dealers | , India",
+  description: "Authorised dealer of Siemens, Allen Bradley, Mitsubishi, Schneider & Delta PLCs, HMIs, VFDs and SCADA systems. Serving industries across India from , Gujarat.",
 };
 
 export default function RootLayout({ children }) {
